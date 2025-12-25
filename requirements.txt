@@ -1,0 +1,31 @@
+# Core Backend
+Django>=4.2
+djangorestframework>=3.14
+psycopg2-binary>=2.9
+
+# AI & Embeddings
+sentence-transformers>=2.2.2
+transformers>=4.36
+torch>=2.0
+huggingface_hub[hf_xet]
+
+# Vector Database
+faiss-cpu>=1.7.4
+
+# Document Processing
+pdfplumber>=0.10.3
+pytesseract>=0.3.10
+easyocr
+Pillow>=10.0
+PyMuPDF
+
+# LangChain
+langchain>=0.2.0
+langchain-core>=0.2.0
+langchain-community>=0.0.38
+langchain-huggingface
+langchain-text-splitters
+
+# Utilities
+numpy>=1.24
+python-dotenv>=1.0
