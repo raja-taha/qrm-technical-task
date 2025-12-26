@@ -370,6 +370,25 @@ python manage.py migrate
 
 ---
 
+## Notes on Trade-offs
+
+### Design Decisions
+
+- **FAISS Over Managed Vector DB**: Chose FAISS for simplicity and offline capability, at the cost of limited query features and no built-in backup/replication
+- **Synchronous Processing**: Current implementation uses synchronous document ingestion for simplicity; scales better with async processing but adds complexity
+- **Single Vector Store**: All documents share one index; supports multi-document queries but lacks document-level isolation and fine-grained access control
+- **In-Memory Embeddings**: Embeddings loaded into memory for faster retrieval; not suitable for very large datasets (100k+ vectors)
+- **Sentence Transformers**: Trade accuracy for speed and lower computational requirements; consider fine-tuned models for domain-specific queries
+- **Fixed Chunk Size**: Using fixed chunk size (500 tokens) for consistency; overlapping chunks increase storage but improve context continuity
+
+### Performance Considerations
+
+- **Response Latency**: OCR on large scanned documents can take 10-30 seconds; consider async processing for better UX
+- **Memory Usage**: Vector store and embeddings require RAM proportional to document volume; GPU acceleration not implemented
+- **Scalability**: Current architecture suitable for 100-1000 documents; beyond that requires distributed vector store and batch processing
+
+---
+
 ## Future Enhancements
 
 - [ ] Support for more document formats (DOCX, TXT, etc.)
